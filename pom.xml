@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- (C) Copyright 2009-2019 Micro Focus or one of its affiliates. -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>demo</groupId>
+    <artifactId>sv-demos</artifactId>
+    <name>Service Virtualization Lab Demos</name>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <organization>
+        <name>Micro Focus Service Virtualization</name>
+        <url>https://microfocus.com/sv</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <modules>
+        <module>hello-world</module>
+        <module>hello-world-advanced</module>
+        <module>smart-irrigation-maven</module>
+        <module>weather-forecast</module>
+        <module>weather-forecast-uft</module>
+    </modules>   
+
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>Public</name>
+            <url>http://dl.bintray.com/adm/maven</url>
+        </repository>
+    </repositories>
+
+</project>

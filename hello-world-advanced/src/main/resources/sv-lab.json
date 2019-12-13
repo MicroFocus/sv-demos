@@ -1,0 +1,32 @@
+{
+  "virtualLab": [
+    {
+      "id": "virtual-lab:9000",
+      "displayName": "Hello Advanced Lab",
+      "applicationModelId": "HelloAdvancedApplicationModel",
+      "connector": [
+        {
+          "id": "connector",
+          "connectorType": "httpGateway",
+          "properties": {
+            "bindPort": 9000
+          }
+        }
+      ],
+      "virtualServiceInstance": [
+        {
+          "virtualServiceId": "HelloAdvancedServiceModel.RestServiceInterface",
+          "serviceMode": "SIMULATE_SERVICE",
+          "endpoints": [
+            {
+              "properties": {
+                "httpVirtualPath": "/"
+              },
+              "connectorId": "connector"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

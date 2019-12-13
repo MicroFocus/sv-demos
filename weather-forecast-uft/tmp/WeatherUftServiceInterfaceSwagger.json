@@ -1,0 +1,157 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Decompiled from VSL ServiceInterface"
+  },
+  "paths": {
+    "/data/2.5/weather": {
+      "get": {
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "description": "Parameter lang.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "description": "Parameter mode.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "description": "Parameter id.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "appid",
+            "description": "Parameter appid.",
+            "required": "false",
+            "type": "string"
+          }
+        ],
+        "responses": [
+          {
+            "200": {
+              "description": "Status code 200."
+            }
+          }
+        ]
+      }
+    },
+    "/data/2.5/uvi": {
+      "get": {
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lon",
+            "description": "Parameter lon.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "description": "Parameter lang.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "description": "Parameter mode.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "appid",
+            "description": "Parameter appid.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Parameter lat.",
+            "required": "false",
+            "type": "string"
+          }
+        ],
+        "responses": [
+          {
+            "200": {
+              "description": "Status code 200."
+            }
+          }
+        ]
+      }
+    },
+    "/data/2.5/forecast": {
+      "get": {
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lang",
+            "description": "Parameter lang.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "description": "Parameter mode.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "description": "Parameter id.",
+            "required": "false",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "appid",
+            "description": "Parameter appid.",
+            "required": "false",
+            "type": "string"
+          }
+        ],
+        "responses": [
+          {
+            "200": {
+              "description": "Status code 200."
+            }
+          }
+        ]
+      }
+    }
+  }
+}

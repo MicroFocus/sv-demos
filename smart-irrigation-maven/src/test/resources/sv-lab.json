@@ -1,0 +1,32 @@
+{
+  "virtualLab": [
+    {
+      "id": "virtual-lab:9001",
+      "displayName": "Smart Irrigation Test Virtual Lab",
+      "applicationModelId": "SmartIrrigationApplicationModel",
+      "connector": [
+        {
+          "id": "httpConnector",
+          "connectorType": "httpProxy",
+          "properties": {
+            "bindPort": 9001
+          }
+        }
+      ],
+      "virtualServiceInstance": [
+        {
+          "virtualServiceId": "WeatherForecastServiceModel.RestServiceInterface",
+          "serviceMode": "SIMULATE_SERVICE",
+          "endpoints": [
+            {
+              "properties": {
+                "httpServiceUrl": "http://www.medard-online.cz"
+              },
+              "connectorId": "httpConnector"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
