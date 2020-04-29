@@ -11,42 +11,41 @@ export class HelloAdvancedServiceModel extends sv.ServiceModel {
     @sv.scenario
     simpleSayHello() {
         // create `yourName` variable accepting any input value
-        let yourFirstName = sv.svVar("little");
-        let yourLastName = sv.svVar("world");
+        let yourName = sv.svVar("world");
 
         // respond with a name copied from path
-        this.service.GET("/hello/{firstName}/{lastName}")
+        this.service.GET("/hello/{name}")
             .withRequest()
-                .withPathParameters({firstName:yourFirstName, lastName:yourLastName})                // URI parameter bound to the scenario variable
+            .withPathParameters({name:yourName})                // URI parameter bound to the scenario variable
             .withResponse({
                 "greetings": [
                     "Hello, ",
-                    yourFirstName, yourLastName]                    // the name copied from request parameter
+                    yourName]                                       // the name copied from request parameter
             }, sv.JSON)                                             // the response is always JSON
-                .withHeaders({"Content-Type": "application/json"})  // necessary response headers
-                .withStatusCode(200);
+            .withHeaders({"Content-Type": "application/json"})  // necessary response headers
+            .withStatusCode(200);
 
         // make the second response slightly different
         this.service.GET("/hello/{name}")
             .withRequest()
-            .withPathParameters({firstName:yourFirstName,lastName:yourLastName})                // URI parameter bound to the scenario variable
+            .withPathParameters({name:yourName})
             .withResponse({
                 "greetings": [
                     "Hello again, ",
-                    yourFirstName, yourLastName]                    // the name copied from request parameter
-                }, sv.JSON)
-                .withHeaders({"Content-Type": "application/json"})
-                .withStatusCode(200);
+                    yourName]                                       // the name copied from request parameter
+            }, sv.JSON)
+            .withHeaders({"Content-Type": "application/json"})
+            .withStatusCode(200);
 
         // aspiring to pass the Turing test...
         this.service.GET("/hello/{name}")
             .withRequest()
-            .withPathParameters({firstName:yourFirstName,lastName:yourLastName})                // URI parameter bound to the scenario variable
+            .withPathParameters({name:yourName})
             .withResponse({
                 "greetings": [ "Hi, I am really glad to see you!" ] // no name in response this time
-                }, sv.JSON)
-                .withHeaders({"Content-Type": "application/json"})
-                .withStatusCode(200);
+            }, sv.JSON)
+            .withHeaders({"Content-Type": "application/json"})
+            .withStatusCode(200);
     }
 
 }
