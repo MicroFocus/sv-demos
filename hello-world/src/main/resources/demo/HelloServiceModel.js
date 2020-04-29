@@ -9,18 +9,21 @@ export class HelloServiceModel extends sv.ServiceModel {
     }
 
     @sv.scenario
-    simpleSayHello() {
-        this.service.GET("/hello")
-            .withRequest()                                          // empty request
-            .withResponse({"greeting": "Hello, world!"}, sv.JSON)
-                .withHeaders({"Content-Type": "application/json"})  // necessary response headers
-                .withStatusCode(200);
-
-        this.service.GET("/hello")
+    interleavedHello() {
+        var corr0 = this.service.GET("/hello")
             .withRequest()
-            .withResponse({"greeting": "Hello again!"}, sv.JSON)
+
+        this.service.GET("/foo")
+            .withRequest()
+            .withResponse("bar", sv.JSON)
                 .withHeaders({"Content-Type": "application/json"})
-                .withStatusCode(200);
+                .withStatusCode(200)
+                .withDelay(100);
+
+        corr0.withResponse({"greeting": "Hello, world!"}, sv.JSON)
+            .withHeaders({"Content-Type": "application/json"})
+            .withStatusCode(200)
+            .withDelay(100);
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 EntIT Software LLC, a Micro Focus company, L.P.
+ * Copyright 2020 EntIT Software LLC, a Micro Focus company, L.P.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,7 +56,7 @@ public class WeatherForecastTest {
         capabilities.setCapability("tenantId", tenantId);
         capabilities.setCapability("mcWorkspaceName", mcWorkspaceName);
 
-        // attach Mobile Center embedded SV Lab Server
+        // attach Mobile Center embedded SV Lab server
         app = new AndroidDriver<>(new URL(uftmUrl), capabilities);
         sv = AppiumHelper.createSvSession(app);
 
@@ -72,7 +72,7 @@ public class WeatherForecastTest {
     @Test
     public void testDisplayForecast() throws Exception {
         // simulate the modified captured scenario
-        sv.runSimulation("capture");
+        sv.runSimulation("weatherForecast");
 
         app.getPageSource();
         // test connecting to the Forecastie app's backend

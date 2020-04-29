@@ -1,0 +1,88 @@
+<html lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="utf-8" http-equiv="encoding"/>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Car Order</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Configure Your Car</h1>
+      
+      <form id="orderForm">
+        <!-- the selects are filled by values retrieved by the GET /api/options AJAX call -->
+        <div class="form-group row">
+          <label class="col-3 col-form-label" for="modelValue">Model:</label>
+          <select class="col-7 custom-select" id="modelValue" name="model">
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label" for="colorValue">Color:</label>
+          <select class="col-7 custom-select" id="colorValue" name="color">
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="col-3 col-form-label" for="wheelsValue">Wheels:</label>
+          <select class="col-7 custom-select" id="wheelsValue" name="wheels">
+          </select>
+        </div>  
+        <button class="btn btn-primary" id="orderNext" type="button">Next</button>
+      </form>
+
+      <!-- the calculated price retrieved by the POST /api/price AJAX call is displayed here -->
+      <div class="form-group row">
+        <label class="col-3 col-form-label" for="priceValue">Your price:</label>
+        <input class="col-7 form-control" id="priceValue" placeholder="..."/>
+      </div>   
+    </div>
+    
+    <script>
+      // fill dropdown with options from string array selecting first one
+      function setOptions(dropdown, options) {
+        dropdown.empty();
+        for (var i = 0; i < options.length; i++) {
+          dropdown.append($('<option/>').attr('value', options[i]).text(options[i]).attr('selected', i === 0));
+        }
+      }
+
+      // retrieve car options from API
+      $.get('/api/options', function(data) {
+        setOptions($('#modelValue'), data.model);
+        setOptions($('#colorValue'), data.color);
+        setOptions($('#wheelsValue'), data.wheels);
+      });
+
+      // helper function for POST of JSON data
+      $.postJSON = function(url, data, callback) {
+        return jQuery.ajax({
+          'type': 'POST',
+          'url': url,
+          'contentType': 'application/json',
+          'data': JSON.stringify(data),
+          'dataType': 'json',
+          'success': callback
+        });
+      };
+
+      // retrieve price from API upon "Next" button click
+      $("#orderNext").click(function(event) {
+        event.preventDefault();
+        $('#priceValue').val("Retrieving price...");
+    
+        // convert form data to JSON
+        var form = $('#orderForm');    
+        var jsonData = {};
+        $.each($('#orderForm').serializeArray(), function() {
+          jsonData[this.name] = this.value;
+        });
+
+        $.postJSON('/api/price', jsonData, function(data) {
+          $('#priceValue').val(data);
+        });
+      });
+    </script>
+  </body>
+
+</html>

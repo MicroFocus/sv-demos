@@ -1,0 +1,14 @@
+[
+  {
+    "model": "Standard Plus",
+    "color": "Perlweiss",
+    "wheels": "18-Zoll Aero-Felgen",
+    "price": "43990 EUR"
+  },
+  {
+    "model": "Long Range",
+    "color": "Solid Schwarz",
+    "wheels": "19-Zoll Sport-Felgen",
+    "price": "56440 EUR"
+  }
+]

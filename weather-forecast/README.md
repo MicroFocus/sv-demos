@@ -26,14 +26,13 @@ There are 3 ways how to experience this demo:
 
 
 ## Prerequisites
-
-  * SV Lab client distribution (the `sv-capture` tool used for setup validation
-    and learning)
+  * SV Lab client distribution from the [Micro Focus marketplace](https://marketplace.microfocus.com/appdelivery/content/service-virtualization)
+    (the `sv-capture` tool used for setup validation and learning)
   * [UFT Mobile](https://admhelp.microfocus.com/mobilecenter/) installed and 
     running (for all 3 demo cases) or ADB tool (manual setup/simulation
     and learning demo only)
   * UFT Mobile access key for execution created in _Settings/Access Keys_ in
-    UFT Mobile (for automation test)  
+    UFT Mobile (for automation test and learning)  
   * A smartphone with _Android 5.0 Lollipop_ or newer connected to UFT Mobile 
     and WiFi
   * [Apache Maven](https://maven.apache.org/) tool or Java IDE (for automation
@@ -41,11 +40,12 @@ There are 3 ways how to experience this demo:
 
 
 ### Step 1: Mobile phone configuration
-Now you need to configure the _Android_ phone to connect to your PC
+First, you need to configure the _Android_ phone to connect to your PC
 running the simulation. Most of the configuration is done automatically
 once you connect the phone to UFT Mobile (the SV integration must be enabled
 for that particular phone in `UFT Mobile/server/conf/connector.properties`,
-see UFT Mobile documentation for more information).
+see [UFT Mobile documentation](https://admhelp.microfocus.com/mobilecenter/en/3.3/Content/Set%20up%20Service%20Virtualization.htm)
+for more information).
 
 You can verify this step by locating the SV Connector Configuration utility
 installed on the phone by UFT Mobile and checking the connection to HTTP Proxy
@@ -53,7 +53,7 @@ connector:
 
 ![](doc/connector-config.png)
 
-To virtualize REST services on Android phone, you need to make it talkto the the
+To virtualize REST services on Android phone, you need to make it talk to the
 _HTTP proxy connector_. You achieve this by configuring proxy settings of your
 current WiFi connection on the phone. Within the WiFi settings, enable proxy
 selecting _Manual_ and set the proxy host name to `127.0.0.1` and port to
@@ -75,8 +75,8 @@ Choose to use the certificate for _VPN and apps_ when asked.
 To verify the settings, launch a discovery mode using sv-capture tool, open
 a web browser in your smartphone and try to display some web page, e.g.
 [https://openweathermap.org/](https://openweathermap.org/). Provide your UFT
-Mobile server URL, access key and mobile phone name with `-mn` argument or 
-mobile phone ID with `-mi` parameter:
+Mobile server URL with `ms` argument, the access key with `-ma` argument, and 
+mobile phone name with `-mn` argument or mobile phone ID with `-mi` argument:
 ```sh
 ../../bin/sv-capture.sh -ms http://localhost:8080 -ma "client=oauth2-..." \
                         -mn SM-G800F -d
@@ -134,10 +134,16 @@ simulate different weather conditions.
 
 
 ## Learning the backend service simulation model
-Start learning by running:
+Simulation models can be learned either with the [UFT Developer
+GUI](https://admhelp.microfocus.com/leanft/en/15.0/HelpCenter/Content/HowTo/SV-Integration.htm)
+or with the _sv-capture_ command line tool available in the SV Lab client 
+distribution.
+
+To learn using the `sv-capture` tool, start learning with:
 
 ```sh
 ../../bin/sv-capture.sh -ms http://localhost:8080 -ma "client=oauth2-..." \
+             -mn SM-G800F \
              -r https://api.openweathermap.org -as weatherForecast \ 
              -o ./learned-model
 ```
@@ -145,6 +151,7 @@ Start learning by running:
 In Windows:
 ```bat
 ..\..\bin\sv-capture.bat -ms http://localhost:8080 -ma "client=oauth2-..." ^
+             -mn SM-G800F ^
              -r https://api.openweathermap.org -as weatherForecast ^ 
              -o ./learned-model
 ```
@@ -157,7 +164,7 @@ see in the _sv-capture_ console output.
 Now stop the learning by pressing _Enter_ within the console running the 
 _sv-capture_ tool.
 
-The learned model is located witihn the `learned-model` directory. You can check
+The learned model is located within the `learned-model` directory. You can check
 and modify learned scenarios and data.
 
 Simulate the learned model by running:
@@ -187,7 +194,7 @@ machines using different hostnames or IP addresses.
 
 
 ### Running the automation test
-Edit the demo.properties file and enter valid values for your environment:
+Edit the `demo.properties` file and enter valid values for your environment:
    * `uftmUrl` is a URL of the _UFT Mobile_ server.
    * `oauthClientId`, `oauthClientSecret` and `tenantId` are the components of
      execution access key generated in UFT Mobile _Settings/Access Keys_
@@ -208,6 +215,38 @@ its certificate.
    * Edit the `demo.properties` file and uncomment the following lines:
     `javax.net.ssl.trustStore=trust.jks` 
     `javax.net.ssl.trustStorePassword=changeit` 
+
+
+## How it works
+The `initLab()` method in the test class will compile simulation models located
+in `src/test/resources` and deploy and start the virtual lab on the SV Lab 
+server embedded in UFT Mobile:
+
+```java
+@BeforeClass
+public static void initLab() throws IOException {
+    ...
+    device = MobileLab.lockDevice(...);
+
+    // attach Mobile Center embedded SV Lab server
+    app = new AndroidDriver<>(new URL(uftmUrl), capabilities);
+    sv = AppiumHelper.createSvSession(app);
+
+    // create SV Lab
+    sv.loadActiveVirtualLab("classpath:/sv-lab.json", sv.compileModuleFromSources("classpath:/demo/*"), true);
+    sv.startActiveVirtualLab();
+}
+```
+
+After that, each test can simulate required behavior of virtual services by
+running the corresponding application scenario from the simulation model:
+```java
+@Test
+public void testDisplayForecast() throws Exception {
+    sv.runSimulation("weatherForecast");
+    ...
+}
+```
 
 
 ## Source code

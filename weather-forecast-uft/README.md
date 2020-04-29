@@ -52,7 +52,8 @@ Now you need to configure the _Android_ phone to connect to your PC
 running the simulation. Most of the configuration is done automatically
 once you connect the phone to UFT Mobile (the SV integration must be enabled
 for that particular phone in `UFT Mobile/server/conf/connector.properties`,
-see UFT Mobile documentation for more information).
+see [UFT Mobile documentation](https://admhelp.microfocus.com/mobilecenter/en/3.3/Content/Set%20up%20Service%20Virtualization.htm)
+for more information).
 
 You can verify this step by locating the SV Connector Configuration utility
 installed on the phone by UFT Mobile and checking the connection to HTTP Proxy
@@ -60,7 +61,7 @@ connector:
 
 ![](doc/connector-config.png)
 
-To virtualize REST services on Android phone, you need to make it talkto the the
+To virtualize REST services on Android phone, you need to make it talk to the
 _HTTP proxy connector_. You achieve this by configuring proxy settings of your
 current WiFi connection on the phone. Within the WiFi settings, enable proxy
 selecting _Manual_ and set the proxy host name to `127.0.0.1` and port to
@@ -109,10 +110,39 @@ non-packaged version on older Android versions.
 
 
 ### Running the automation test
-Edit the demo.properties file and enter the device ID of Android phone connected
-to UFT Mobile to use in test, `uftm.deviceId=5200...`.
+Edit the `demo.properties` file and enter the device ID of Android phone 
+connected to UFT Mobile to use in test, `uftm.deviceId=5200...`.
 
 Then run `mvn test` within the demo directory.
+
+
+## How it works
+The `setupBeforeClass()` method in the test class will compile simulation models
+located in `src/test/resources` and deploy and start the virtual lab on the SV
+Lab server embedded in UFT Mobile:
+
+```java
+@BeforeClass
+public static void setUpBeforeClass() throws Exception {
+    ...
+    device = MobileLab.lockDevice(...);
+
+    // create SV Lab
+    sv = SvClient.newInstance(device.getSvInfo().getEndpoint());
+    sv.loadActiveVirtualLab("classpath:/sv-lab.json", sv.compileModuleFromSources("classpath:/demo/*"), true);
+    sv.startActiveVirtualLab();
+}
+```
+
+After that, each test can simulate required behavior of virtual services by
+running the corresponding application scenario from the simulation model:
+```java
+@Test
+public void test() throws Exception {
+    sv.runSimulation("weatherForecast");
+    ...
+}
+```
 
 
 ## Source code

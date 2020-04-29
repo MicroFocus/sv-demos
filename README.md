@@ -7,14 +7,14 @@ There are additional demos present in the SV Lab distribution available as
 a part of SV Designer installation or as a separate download.
 
 The quick introduction explaining some of the demos as well as a complete SV Lab
-reference guide is [available online](https://admhelp.microfocus.com/documents/sv/sv-lab/5.2/quick-start-guide/quick-start-guide.html).
+reference guide is [available online](https://admhelp.microfocus.com/documents/sv/sv-lab/5.3/quick-start-guide/quick-start-guide.html).
 
 ## Prerequisites
 To run any of these demos you will need:
    
    * SV Lab server
-      * It is a part of SV Designer setup thatcan be downloaded from the
-        [Micro Focus marketplace](https://marketplace.microfocus.com/appdelivery/content/service-virtualization-520).
+      * It is a part of SV Designer setup that can be downloaded from the
+        [Micro Focus marketplace](https://marketplace.microfocus.com/appdelivery/content/service-virtualization).
    * Java SDK 8 or newer
       * We suggest to use [OpenJDK](https://openjdk.java.net/install/).
    * [Apache Maven](https://maven.apache.org/) for running the demos from
@@ -75,6 +75,7 @@ You can dig down into SV Lab features in advanced demos (alphabetical order):
 
 | Demo                                                       | Protocols     | Features                                                                                 | Level |
 | ---------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------- | ----- |
+| [car-order-data-driving](car-order-data-driving/README.md) | REST, JSON    | SIMULATION, data driving, lab configuration file                                         | ****  |
 | [smart-irrigation-maven](smart-irrigation-maven/README.md) | REST, JSON    | SIMULATION, JUnit, Maven, lab configuration file                                         | ****  |
 | [weather-forecast](weather-forecast/README.md)             | REST, JSON    | Service LEARNING and SIMULATION on Android, UI testing with Appium and UFT Mobile        | ***   |
 | [weather-forecast-uft](weather-forecast-uft/README.md)     | REST, JSON    | Service LEARNING and SIMULATION on Android, UI testing with UFT Developer and UFT Mobile | ***   |

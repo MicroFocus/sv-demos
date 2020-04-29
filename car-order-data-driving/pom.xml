@@ -5,7 +5,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hello-world</artifactId>
+    <artifactId>car-order-data-driving</artifactId>
     <version>1.0</version>
 
     <parent>
@@ -41,7 +41,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -54,7 +53,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>demo.HelloWorld</mainClass>
+                    <mainClass>demo.CarOrder</mainClass>
                     <systemProperties>
                         <systemProperty>
                             <key>sv.server.endpoint</key>
@@ -67,6 +66,21 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.28.v20200408</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-proxy</artifactId>
+            <version>9.4.28.v20200408</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>9.4.28.v20200408</version>
+        </dependency>
         <dependency>
             <groupId>com.microfocus.evr</groupId>
             <artifactId>sv-lab-client-all</artifactId>

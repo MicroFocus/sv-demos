@@ -1,23 +1,22 @@
 # This Is How SV Lab Can Help Your Integration Tests
 
-This is a demonstration of simulation of REST service that is configured
-and launched from a [JUnit](http://junit.org/) test run with 
-[Apache Maven](https://maven.apache.org/).
+This is a demonstration of simulation of REST service that is configured and 
+launched from a [JUnit](http://junit.org/) test run with 
+[Maven](https://maven.apache.org/).
 
 You can use it as a template for building your own virtual services and
 embedding them in your tests.
 
-The application being tested is controlling an irrigation system in
-a clever way. It will reduce the amount of water used for irrigation 
-according to the forecast of precipitation for next 24 hours.
+The application being tested is controlling an irrigation system in a clever
+way. It will reduce the amount of water used for irrigation according to the
+forecast of precipitation for next 24 hours.
 
 ![](doc/smart-irrigation-app.png)
 
-To test the application logic, we want to verify its behavior under 
-conditions of rainy weather when the irrigation should conserve water as well
-as on dry weather when the irrigation should not be reduced.
-We have created two scenarios simulating different weather forecast for
-each of the two tests:
+To test the application logic, we want to verify its behavior under conditions
+of rainy weather when the irrigation should conserve water as well as on dry
+weather when the irrigation should not be reduced. We have created two scenarios
+simulating different weather forecast for each of the two tests:
 
 ```java
 @Test
@@ -203,7 +202,7 @@ run and pick the application model to use:
 ```javascript
 "virtualLab": [
   {
-    "id": "virtual-lab:9000",
+    "id": "virtual-lab:9001",
     "displayName": "Smart Irrigation Test Virtual Lab",
     "applicationModelId": "SmartIrrigationApplicationModel",
     "connector": ...,
@@ -220,7 +219,7 @@ _virtual service_ we want to simulate.
     "id": "connector",
     "connectorType": "httpProxy",
     "properties": {
-      "bindPort": 9000
+      "bindPort": 9001
     }
   }
 ]

@@ -1,0 +1,32 @@
+{
+  "virtualLab": [
+    {
+      "id": "virtual-lab:9002",
+      "displayName": "Car Order Lab",
+      "applicationModelId": "CarOrderApplicationModel",
+      "connector": [
+        {
+          "id": "connector",
+          "connectorType": "httpGateway",
+          "properties": {
+            "bindPort": 9002
+          }
+        }
+      ],
+      "virtualServiceInstance": [
+        {
+          "virtualServiceId": "CarOrderServiceModel.RestServiceInterface",
+          "serviceMode": "SIMULATE_SERVICE",
+          "endpoints": [
+            {
+              "properties": {
+                "httpVirtualPath": "/api"
+              },
+              "connectorId": "connector"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

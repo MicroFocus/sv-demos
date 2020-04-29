@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- (C) Copyright 2009-2019 Micro Focus or one of its affiliates. -->
+<!-- (C) Copyright 2009-2020 Micro Focus or one of its affiliates. -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -22,6 +22,7 @@
     </licenses>
 
     <modules>
+        <module>car-order-data-driving</module>
         <module>hello-world</module>
         <module>hello-world-advanced</module>
         <module>smart-irrigation-maven</module>

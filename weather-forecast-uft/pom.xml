@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.microfocus.evr</groupId>
             <artifactId>sv-lab-client-all</artifactId>
-            <version>5.2.0</version>
+            <version>5.3</version>
         </dependency>
 
         <dependency>
