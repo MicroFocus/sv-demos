@@ -23,19 +23,13 @@
 
     <modules>
         <module>car-order-data-driving</module>
+        <module>fibonacci-kafka-springrpc</module>
+        <module>fibonacci-rabbitmq-springrpc</module>
         <module>hello-world</module>
         <module>hello-world-advanced</module>
         <module>smart-irrigation-maven</module>
         <module>weather-forecast</module>
         <module>weather-forecast-uft</module>
-    </modules>   
-
-    <repositories>
-        <repository>
-            <id>public</id>
-            <name>Public</name>
-            <url>http://dl.bintray.com/adm/maven</url>
-        </repository>
-    </repositories>
+    </modules>
 
 </project>

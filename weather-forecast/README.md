@@ -44,7 +44,7 @@ First, you need to configure the _Android_ phone to connect to your PC
 running the simulation. Most of the configuration is done automatically
 once you connect the phone to UFT Mobile (the SV integration must be enabled
 for that particular phone in `UFT Mobile/server/conf/connector.properties`,
-see [UFT Mobile documentation](https://admhelp.microfocus.com/mobilecenter/en/3.3/Content/Set%20up%20Service%20Virtualization.htm)
+see [UFT Mobile documentation](https://admhelp.microfocus.com/mobilecenter/en/3.5/Content/Set%20up%20Service%20Virtualization.htm)
 for more information).
 
 You can verify this step by locating the SV Connector Configuration utility

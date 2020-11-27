@@ -1,0 +1,28 @@
+logging.level:
+  org: ERROR
+
+spring.kafka.properties:
+  bootstrap.servers: localhost:9092
+  group.id: demo
+  # use following properties for authenticated Kafka access without SSL:
+  #sasl.mechanism: PLAIN
+  #security.protocol: SASL_PLAINTEXT
+  #sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="kafkaclient1" password="secret";
+  #
+
+server:
+  request-topic: demo.rpc.request
+  reply-topic: demo.rpc.reply
+
+client:
+  request-topic: demo.rpc.request
+  reply-topic: demo.rpc.reply
+
+---
+
+spring:
+  profiles: virtualized
+
+client:
+  request-topic: v.demo.rpc.request
+  reply-topic: v.demo.rpc.reply

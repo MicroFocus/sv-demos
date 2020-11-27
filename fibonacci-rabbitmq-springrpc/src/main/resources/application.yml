@@ -1,0 +1,27 @@
+spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+
+logging:
+  level:
+    org: ERROR
+
+server:
+  req-exchange: demo.rpc
+  req-queue: demo.rpc.requests
+  binding-key: rpc.demo
+
+client:
+  req-exchange: demo.rpc
+  routing-key: rpc.demo
+  duration: 6000
+
+---
+
+spring:
+  profiles: virtualized
+
+client:
+  req-exchange: v.demo.rpc

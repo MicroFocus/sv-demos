@@ -1,0 +1,43 @@
+{
+  "virtualLab": [
+    {
+      "id": "virtual-lab:9004",
+      "displayName": "Kafka Demo Lab",
+      "applicationModelId": "KafkaDemoApplicationModel",
+      "connector": [
+        {
+          "id": "connector",
+          "connectorType": "kafka",
+          "properties": {
+            "kafka.bootstrap.servers": "localhost:9092",
+            "kafka.group.id": "demo",
+            "kafka.sasl.mechanism": "PLAIN",
+            "kafka.security.protocol": "SASL_PLAINTEXT",
+            "kafka.sasl.jaas.config": "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"kafkaclient1\" password=\"secret\";"
+          }
+        }
+      ],
+      "virtualServiceInstance": [
+        {
+          "virtualServiceId": "FibonacciServiceInterface",
+          "serviceMode" : "SIMULATE_SERVICE",
+          "endpoints": [
+            {
+              "displayName": "fibEndpoint",
+              "properties": {
+                "kafkaValueContentType": "application/json",
+                "kafkaSpringCorrelation": true,
+                
+                "kafkaVirtualRequestTopic": "v.demo.rpc.request",
+                "kafkaVirtualResponseTopic": "v.demo.rpc.reply",
+                "kafkaRealRequestTopic": "demo.rpc.request",
+                "kafkaRealResponseTopic": "demo.rpc.reply"
+              },
+              "connectorId": "connector"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -22,11 +22,11 @@ at one moment.
   * [Java SDK](https://openjdk.java.net/)
   * [Apache Maven](https://maven.apache.org/)
   * A smartphone with _Android 5.0 Lollipop_ or newer connected to WiFi
-  * [UFT Mobile 3.30](https://www.microfocus.com/en-us/products/uft-mobile) or 
+  * [UFT Mobile 3.5](https://www.microfocus.com/en-us/products/uft-mobile) or 
     newer
-  * UFT Mobile [execution access key](https://admhelp.microfocus.com/mobilecenter/en/3.3/Content/Admin-Tokens.htm#mt-item-1)
+  * UFT Mobile [execution access key](https://admhelp.microfocus.com/mobilecenter/en/3.5/Content/Admin-Tokens.htm#mt-item-1)
     created in _Settings/Access Keys_ in UFT Mobile  
-  * [UFT Developer 15.0](https://www.microfocus.com/en-us/products/uft-developer)
+  * [UFT Developer 15.0.2](https://www.microfocus.com/en-us/products/uft-developer)
     or newer [connected to UFT Mobile](https://admhelp.microfocus.com/leanft/en/15.0/HelpCenter/Content/HowTo/Integ_MC.htm)  
 
 
@@ -39,11 +39,11 @@ directory (i.e. `"c:\Program Files (x86)\Micro Focus\UFT Developer\SDK\Maven"`),
 then run following commands from there: 
 
 ```sh
-mvn install:install-file -DpomFile=com.hp.lft.sdk-15.0.0-pom.xml -Dfile=com.hp.lft.sdk-15.0.0.jar
-mvn install:install-file -DpomFile=com.hp.lft.common-15.0.0-pom.xml -Dfile=com.hp.lft.common-15.0.0.jar
-mvn install:install-file -DpomFile=com.hp.lft.unittesting-15.0.0-pom.xml -Dfile=com.hp.lft.unittesting-15.0.0.jar 
-mvn install:install-file -DpomFile=com.hp.lft.report-15.0.0-pom.xml -Dfile=com.hp.lft.report-15.0.0.jar 
-mvn install:install-file -DpomFile=com.hp.lft.reportbuilder-15.0.0-pom.xml -Dfile=com.hp.lft.reportbuilder-15.0.0.jar
+mvn install:install-file -DpomFile=com.hp.lft.sdk-15.0.2-pom.xml -Dfile=com.hp.lft.sdk-15.0.2.jar
+mvn install:install-file -DpomFile=com.hp.lft.common-15.0.2-pom.xml -Dfile=com.hp.lft.common-15.0.2.jar
+mvn install:install-file -DpomFile=com.hp.lft.unittesting-15.0.2-pom.xml -Dfile=com.hp.lft.unittesting-15.0.2.jar 
+mvn install:install-file -DpomFile=com.hp.lft.report-15.0.2-pom.xml -Dfile=com.hp.lft.report-15.0.2.jar 
+mvn install:install-file -DpomFile=com.hp.lft.reportbuilder-15.0.2-pom.xml -Dfile=com.hp.lft.reportbuilder-15.0.2.jar
 ``` 
 
 
@@ -52,7 +52,7 @@ Now you need to configure the _Android_ phone to connect to your PC
 running the simulation. Most of the configuration is done automatically
 once you connect the phone to UFT Mobile (the SV integration must be enabled
 for that particular phone in `UFT Mobile/server/conf/connector.properties`,
-see [UFT Mobile documentation](https://admhelp.microfocus.com/mobilecenter/en/3.3/Content/Set%20up%20Service%20Virtualization.htm)
+see [UFT Mobile documentation](https://admhelp.microfocus.com/mobilecenter/en/3.5/Content/Set%20up%20Service%20Virtualization.htm)
 for more information).
 
 You can verify this step by locating the SV Connector Configuration utility

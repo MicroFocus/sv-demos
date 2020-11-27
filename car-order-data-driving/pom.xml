@@ -5,15 +5,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>demo</groupId>
     <artifactId>car-order-data-driving</artifactId>
     <version>1.0</version>
-
-    <parent>
-        <groupId>demo</groupId>
-        <artifactId>sv-demos</artifactId>
-        <version>1.0</version>
-        <relativePath>../</relativePath>
-    </parent>
 
     <organization>
         <name>Micro Focus Service Virtualization</name>
@@ -69,23 +63,31 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.4.28.v20200408</version>
+            <version>9.4.31.v20200723</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-proxy</artifactId>
-            <version>9.4.28.v20200408</version>
+            <version>9.4.31.v20200723</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>9.4.28.v20200408</version>
+            <version>9.4.31.v20200723</version>
         </dependency>
         <dependency>
             <groupId>com.microfocus.evr</groupId>
             <artifactId>sv-lab-client-all</artifactId>
-            <version>5.3</version>
+            <version>5.4.0.3896</version>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>Public</name>
+            <url>http://dl.bintray.com/adm/maven</url>
+        </repository>
+    </repositories>
 
 </project>

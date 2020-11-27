@@ -79,7 +79,7 @@
         });
 
         $.postJSON('/api/price', jsonData, function(data) {
-          $('#priceValue').val(data);
+          $('#priceValue').val(data.offers[0].price + " " + data.offers[0].currency);
         });
       });
     </script>

@@ -1,0 +1,35 @@
+{
+  "virtualLab" : [ {
+    "id" : "virtual-lab:9003",
+    "displayName": "RabbitMQ Demo Lab",
+    "applicationModelId" : "RabbitMqDemoApplicationModel",
+    "connector" : [ {
+      "id" : "rabbitMqConnector",
+      "properties" : {
+        "brokerUri": "amqp://localhost:5672",
+        "username": "guest",
+        "password": "guest"
+      },
+      "connectorType" : "rabbitMq"
+    } ],
+    "virtualServiceInstance" : [ {
+      "virtualServiceId" : "FibonacciServiceInterface",
+      "serviceMode" : "SIMULATE_SERVICE",
+      "endpoints" : [ {
+        "displayName": "fibEndpoint",
+        "properties" : {
+          "contentType" : "application/json",
+
+          "virtualRequestExchange": "v.demo.rpc",
+          "virtualRequestExchangeType": "topic",
+          "virtualRequestQueue": "v.demo.rpc.requests",
+          "virtualRequestBindingKeys": "rpc.*",
+
+          "realRequestExchange": "demo.rpc",
+          "realRequestDefaultRoutingKey": "rpc.demo"
+        },
+        "connectorId" : "rabbitMqConnector"
+      } ]
+    } ]
+  } ]
+}

@@ -49,7 +49,7 @@ public class WeatherForecastTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 //        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3 XL");
-        capabilities.setCapability("appPackage", "cz.martykan.forecastie");
+        capabilities.setCapability("appPackage", "com.casticalabs.forecastie");
         capabilities.setCapability("appActivity", "cz.martykan.forecastie.activities.SplashActivity");
         capabilities.setCapability("oauthClientId", oauthClientId);
         capabilities.setCapability("oauthClientSecret", oauthClientSecret);
