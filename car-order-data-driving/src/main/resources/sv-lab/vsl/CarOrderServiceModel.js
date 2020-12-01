@@ -60,16 +60,18 @@ export class CarOrderServiceModel extends sv.ServiceModel {
     // Scenario with one request-response call parametrized by values from one data source row.
     //
     @sv.scenario
-/*
-    oneCall(model = sv.svVar(), color = sv.svVar(),
-            wheels = sv.svVar(), price = sv.svVar(),
-            currency = sv.svVar()) {
-*/
-    oneCall(model = sv.svVar().setFinal(), color = sv.svVar().setFinal(),
-            wheels = sv.svVar().setFinal(), price = sv.svVar().setFinal(),
-            currency = sv.svVar().setFinal()) {
+    oneCall(model = sv.svVar("").setFinal(), color = sv.svVar("").setFinal(""),
+            wheels = sv.svVar("").setFinal(),
+            price = sv.svVar(""), currency = sv.svVar("")) {
         // note the .setFinal() SV variable declaration above telling the simulator
         // to match the values during simulation rather than ignoring the variable data
+
+        // data driven request
+        let req =  sv.svVar({
+            "model": model,
+            "color": color,
+            "wheels": wheels
+        });
 
         // it is useful to store large response templates in external files and replace
         // data driven values with sv.svAssign(target, variable)
@@ -87,13 +89,6 @@ export class CarOrderServiceModel extends sv.ServiceModel {
         // sv.svAssign(response.offers[0].spec, spec);
         sv.svAssign(response.offers[0].price, price);
         sv.svAssign(response.offers[0].currency, currency);
-
-        // data driven request
-        let req =  sv.svVar({
-            "model": model,
-            "color": color,
-            "wheels": wheels
-        });
 
         // respond according to the provided specification - price data pair
         this.service.POST("/price")
